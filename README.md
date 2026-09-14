@@ -11,17 +11,16 @@ This branch only holds the mirror configuration and its tooling. See the mirror 
 | `awf-latest` | `autowarefoundation/autoware_universe:main`, `common/` |
 | `awf-core-latest` | `autowarefoundation/autoware_core:main`, `common/`, `testing/` |
 | `feat/v0.64/e2e` | `tier4/autoware_universe:feat/v0.64/e2e`, the same paths as the universe mirror |
-| `awf-combined-latest` | the two mirrors above replayed into one linear history |
+| `awf-combined-latest` | `feat/v0.64/e2e` and `awf-core-latest` replayed into one linear history |
 
-In the combined branch each member is filed under the name of its upstream,
-which keeps the two histories out of one another's directories and makes
-provenance visible in the path. Everything else at the root comes from
-`autoware_universe`.
+The combined branch treats `feat/v0.64/e2e` as the trusted universe-side
+history (not `awf-latest` / AWF `main`). Each member is filed under a
+disjoint path; everything else at the root comes from the e2e mirror.
 
 ```text
 awf-combined-latest/
-├── universe/common/
-├── core/common/
+├── universe/common/            # from feat/v0.64/e2e
+├── core/common/                # from awf-core-latest
 ├── core/testing/
 └── .github/  docs/  LICENSE  NOTICE  README.md  ...
 ```
