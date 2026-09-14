@@ -11,16 +11,18 @@ This branch only holds the mirror configuration and its tooling. See the mirror 
 | `awf-latest` | `autowarefoundation/autoware_universe:main`, `common/` |
 | `awf-core-latest` | `autowarefoundation/autoware_core:main`, `common/`, `testing/` |
 | `feat/v0.64/e2e` | `tier4/autoware_universe:feat/v0.64/e2e`, the same paths as the universe mirror |
-| `awf-combined-latest` | `feat/v0.64/e2e` and `awf-core-latest` replayed into one linear history |
+| `feat/v0.64/e2e-core` | `tier4/autoware_core:feat/v0.64/e2e`, `common/`, `testing/` |
+| `awf-combined-latest` | `feat/v0.64/e2e` and `feat/v0.64/e2e-core` replayed into one linear history |
 
-The combined branch treats `feat/v0.64/e2e` as the trusted universe-side
-history (not `awf-latest` / AWF `main`). Each member is filed under a
-disjoint path; everything else at the root comes from the e2e mirror.
+The combined branch treats the tier4 `feat/v0.64/e2e` forks of
+`autoware_universe` and `autoware_core` as the trusted histories (not AWF
+`main`). Each member is filed under a disjoint path; everything else at the
+root comes from the universe e2e mirror.
 
 ```text
 awf-combined-latest/
 ├── universe/common/            # from feat/v0.64/e2e
-├── core/common/                # from awf-core-latest
+├── core/common/                # from feat/v0.64/e2e-core
 ├── core/testing/
 └── .github/  docs/  LICENSE  NOTICE  README.md  ...
 ```
